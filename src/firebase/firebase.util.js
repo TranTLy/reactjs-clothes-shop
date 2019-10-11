@@ -13,11 +13,37 @@ const config = {
     measurementId: "G-GSPSE05RYE"
 }
 
+export const createUserInDB = async (userAuth, additionalData) => {
+    if (!userAuth) {
+        return;
+    }
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapShot = await userRef.get();
+    console.log('user auth: ', userAuth);
+    if (!snapShot.exists) {
+        const { displayName, email } = userAuth;
+        const createAt = new Date();
+        console.log("data in util: ", {
+            displayName, email, createAt, ...additionalData
+        });
+
+        try {
+            await userRef.set({
+                displayName, email, createAt, ...additionalData
+            });
+        } catch (err) {
+            console.log("Create user err: ", err);
+        }
+    }
+    return userRef;
+}
+export const getUserRef = (id) => firestore.doc(`users/${id}`);
+
 firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithGoogle();
-
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export default firebase;

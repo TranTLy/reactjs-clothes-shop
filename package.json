@@ -10,9 +10,12 @@
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.6",
+    "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.8",
     "react-tooltip": "^3.10.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
     "superagent": "^5.1.0"
   },
   "scripts": {
