@@ -15,7 +15,12 @@
       height: 240px;
       display: flex;
       flex-direction: column;
-      overflow: scroll;
+      overflow: auto;
+    }
+    .cart-tempty{
+      font-style: italic;
+      color: rgba(0, 0, 0, 0.699);
+      margin: auto;
     }
   
     button {
