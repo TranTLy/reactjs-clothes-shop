@@ -16,6 +16,7 @@
     "react-tooltip": "^3.10.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "reselect": "^4.0.0",
     "superagent": "^5.1.0"
   },
