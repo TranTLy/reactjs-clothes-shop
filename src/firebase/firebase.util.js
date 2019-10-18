@@ -38,8 +38,20 @@ export const createUserInDB = async (userAuth, additionalData) => {
     }
     return userRef;
 }
-export const getUserRef = (id) => firestore.doc(`users/${id}`);
 
+export const addCollectionAndDocuments = (key, collectionArr) => {
+    const ref = firestore.collection(key);
+    const batch = firestore.batch();
+    console.log("on add collection to firebase");
+    collectionArr.forEach(obj => {
+        const newDocRef = ref.doc();
+        batch.set(newDocRef, obj);
+    });
+    batch.commit();
+}
+
+
+export const getUserRef = (id) => firestore.doc(`users/${id}`);
 firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
