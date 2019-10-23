@@ -50,6 +50,23 @@ export const addCollectionAndDocuments = (key, collectionArr) => {
     batch.commit();
 }
 
+export const convertCollectionSnapshotToMap = (collections) => {
+    const transformedCollection = collections.docs.map(doc => {
+        const { title, items } = doc.data();
+        return {
+            routeName: encodeURI(title.toLowerCase()),
+            id: doc.id,
+            title,
+            items
+        }
+    });
+    console.log("transformedCollection: ", transformedCollection)
+    return transformedCollection.reduce((accumulator, item) => {
+        accumulator[item.routeName] = item;
+        return accumulator;
+    }, {});
+}
+
 
 export const getUserRef = (id) => firestore.doc(`users/${id}`);
 firebase.initializeApp(config);

@@ -1,4 +1,4 @@
-import style, { css } from 'styled-components';
+import style from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // const OptionsContainerStyle = css`

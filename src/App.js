@@ -5,13 +5,12 @@ import HomePage from './page/homepage/homepage.component';
 import Shop from './page/shop/shop.component';
 import Header from './components/header/header.component';
 import { SignInAndSignUp } from './page/sign-in-sign-up/sign-in-sign-up.component';
-import { auth, createUserInDB, getUserRef, addCollectionAndDocuments } from './firebase/firebase.util';
+import { auth, createUserInDB, getUserRef } from './firebase/firebase.util';
 import { connect } from 'react-redux';
 import { setUserAction } from './redux/user/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
 import Checkout from './page/checkout/checkout.component';
-import { selectCollectionsForPreview } from './redux/shop/shop.selector';
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -21,7 +20,7 @@ class App extends Component {
 	}
 	unSubscribeFromAuth = null;
 	componentDidMount() {
-		const { setUser, collecitonArr } = this.props;
+		const { setUser } = this.props;
 		this.unSubscribeFromAuth = auth.onAuthStateChanged(async user => {
 			console.log("on auth change")
 			if (user) {
@@ -37,8 +36,6 @@ class App extends Component {
 			} else {
 				setUser(user);
 			}
-
-			addCollectionAndDocuments('collections', collecitonArr.map(({ title, items }) => ({ title, items })))
 		})
 	}
 
@@ -63,8 +60,7 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser,
-	collecitonArr: selectCollectionsForPreview
+	currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
