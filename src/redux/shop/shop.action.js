@@ -14,16 +14,16 @@ export const fetchCollectionFailure = (err) => ({
     payload: err
 });
 
-
-export const fetchCollectionStartAsync = () => {
-    return dispatch => {
-        // console.log("on asynch fetching ");
-        const collectionRef = firestore.collection('collections');
-        dispatch(fetchCollectionStart());
-        collectionRef.get().then(snapShot => {
-            const collectionData = convertCollectionSnapshotToMap(snapShot);
-            // console.log("on snap shot data: ", collectionData);
-            dispatch(fetchCollectionSuccess(collectionData));
-        }).catch(err => dispatch(fetchCollectionFailure(err.message)));
-    }
-}
+// // using redux-thunk
+// export const fetchCollectionStartAsync = () => {
+//     return dispatch => {
+//         // console.log("on asynch fetching ");
+//         const collectionRef = firestore.collection('collections');
+//         dispatch(fetchCollectionStart());
+//         collectionRef.get().then(snapShot => {
+//             const collectionData = convertCollectionSnapshotToMap(snapShot);
+//             // console.log("on snap shot data: ", collectionData);
+//             dispatch(fetchCollectionSuccess(collectionData));
+//         }).catch(err => dispatch(fetchCollectionFailure(err.message)));
+//     }
+// }

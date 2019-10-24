@@ -3,6 +3,8 @@ import './sign-in.style.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button';
 import { signInWithGoogle, auth } from '../../firebase/firebase.util';
+import { connect } from 'react-redux';
+import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -21,14 +23,13 @@ class SignIn extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         const { email, password } = this.state;
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-            this.setState({ email: '', password: '' });
-        } catch (err) {
-            console.error(err);
-        }
+        const { emailSignInStart } = this.props;
+        emailSignInStart({ email, password });
+        // reset from
+        this.setState({ email: '', password: '' });
     }
     render() {
+        const { googleSignInStart } = this.props;
         return (
             <div className="sign-in">
                 <h2>I already have an account</h2>
@@ -51,7 +52,7 @@ class SignIn extends React.Component {
                     />
                     <div className="sign-in__btn">
                         <CustomButton type="submit">Login</CustomButton>
-                        <CustomButton isGoogleSignIn onClick={signInWithGoogle}>Sign in with Google</CustomButton>
+                        <CustomButton type="button" isGoogleSignIn onClick={googleSignInStart}>Sign in with Google</CustomButton>
                     </div>
                 </form>
             </div>
@@ -59,4 +60,8 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapDispathToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: ({ email, password }) => dispatch(emailSignInStart({ email, password }))
+})
+export default connect(null, mapDispathToProps)(SignIn);
