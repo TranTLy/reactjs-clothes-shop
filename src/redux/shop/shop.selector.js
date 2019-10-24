@@ -9,10 +9,10 @@ export const selectCollectionsForPreview = createSelector([selectCollections],
     collections => collections ? Object.keys(collections).map(key => collections[key]) : []);
 
 export const selectCollection = collectionURLParam => {
-    console.log("on select collection");
+    // console.log("on select collection");
     return createSelector(
         [selectCollections],
-        collections => collections[collectionURLParam]
+        collections => collections ? collections[collectionURLParam] : []
     )
 }
 
