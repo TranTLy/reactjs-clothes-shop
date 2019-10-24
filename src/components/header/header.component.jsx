@@ -19,7 +19,7 @@ const Header = ({ user, hidden }) => (
             <OptionLink className="option" to="/shop">Shop</OptionLink>
             <OptionLink className="option" to="/contact">Contact</OptionLink>
             {
-                user ? <OptionLink as='div' className="option" onClick={() => auth.signOut()}>Hi, {user.displayName} | Sign Out</OptionLink> :
+                user ? <> Hi, {user.displayName} | <div as='div' className="option" onClick={() => auth.signOut()}>Sign Out</div> </> :
                     <OptionLink className="option" to="/sign-in">Sign In</OptionLink>
             }
             <CartIcon />

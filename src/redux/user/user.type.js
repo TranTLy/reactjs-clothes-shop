@@ -5,4 +5,6 @@ export const userTypeAction = {
 
     SIGN_IN_FAILURE: 'SIGN_IN_FAILURE',
     SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
+
+    CHECK_USER_SESSION: 'CHECK_USER_SESSION'
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import './sign-in.style.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button';
-import { signInWithGoogle, auth } from '../../firebase/firebase.util';
 import { connect } from 'react-redux';
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 
