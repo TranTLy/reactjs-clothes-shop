@@ -19,3 +19,6 @@ export const increaseItem = (item) => ({
     type: CartTypeAction.INCREASE_ITEM,
     payload: item
 })
+export const clearCart = () => ({
+    type: CartTypeAction.CLEAR_CART
+})

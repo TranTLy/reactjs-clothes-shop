@@ -28,4 +28,7 @@ export const OptionContainer = style.div`
 
 export const OptionLink = style(Link)`
     padding: 10px 15px;
+    &:hover{
+        cursor: pointer;
+    }
 `

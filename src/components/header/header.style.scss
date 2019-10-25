@@ -21,6 +21,11 @@
       .option {
         padding: 10px 15px;
       }
+          .sign-out{
+            &:hover{
+              cursor: pointer;
+            }
+          }
     }
   }
   
