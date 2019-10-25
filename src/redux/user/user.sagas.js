@@ -54,7 +54,7 @@ export function* signOut() {
 export function* signUp({ payload: { email, password, displayName } }) {
     try {
         let { user } = yield auth.createUserWithEmailAndPassword(email, password);
-        console.log("sign up:", user);
+        // console.log("sign up:", user);
         // yield createUserInDB(user, { displayName });
         yield put(signupSuccess({ user, otherData: { displayName } }));
     } catch (error) {
@@ -71,12 +71,12 @@ export function* onGoogleSignIn() {
 }
 
 export function* onEmailAndPasswordSignIn() {
-    console.log("email  - pass sign in start");
+    // console.log("email  - pass sign in start");
     yield takeLatest(userTypeAction.EMAIL_SIGN_IN_START, signInWithEmailAndPassword)
 }
 
 export function* onCheckUserSession() {
-    console.log("in sagas: CHECK_USER_SESSION")
+    // console.log("in sagas: CHECK_USER_SESSION")
     yield takeLatest(userTypeAction.CHECK_USER_SESSION, isUserAuthenticated)
 }
 

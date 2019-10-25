@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './page/homepage/homepage.component';
 import Shop from './page/shop/shop.component';
 import Header from './components/header/header.component';
@@ -30,7 +30,8 @@ class App extends Component {
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route path="/shop" component={Shop} />
-					<Route path="/sign-in" component={SignInAndSignUp} />
+					<Route exact path="/sign-in"
+						render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInAndSignUp />)} />
 					<Route path="/check-out" component={Checkout} />
 				</Switch>
 
