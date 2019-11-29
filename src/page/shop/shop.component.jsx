@@ -29,7 +29,7 @@ const Shop = ({ fetchCollectionStart, match }) => {
 
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionStarta: () => dispatch(fetchCollectionStart())
+    fetchCollectionStart: () => dispatch(fetchCollectionStart())
 })
 
 export default connect(null, mapDispatchToProps)(Shop);
