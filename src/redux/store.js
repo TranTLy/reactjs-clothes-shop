@@ -10,6 +10,8 @@ import rootSagas from './rootSagas';
 const sagaMiddleWare = createSagaMiddleware();
 const middlewares = [sagaMiddleWare];
 
+console.log("in store,js, process env: ", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV !== 'production') {
     middlewares.push(logger);
 }

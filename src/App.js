@@ -10,6 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
 import Spinner from './components/spinner/spinner.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
+import testEnv from './redux/test-draft';
 
 const HomePage = lazy(() => import('./page/homepage/homepage.component'));
 const Shop = lazy(() => import('./page/shop/shop.component'));
@@ -17,6 +18,8 @@ const Checkout = lazy(() => import('./page/checkout/checkout.component'));
 
 
 const App = ({ checkUserSession, currentUser }) => {
+	console.log("in app.js, process env: ", process.env.NODE_ENV);
+	testEnv();
 
 	useEffect(() => {
 		checkUserSession();
